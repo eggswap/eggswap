@@ -13,7 +13,7 @@ contract ChickenCoop is ERC20("ChickenCoop", "xEGG"){
         egg = _egg;
     }
 
-    // Enter the bar. Pay some EGGs. Earn some shares.
+    // Enter the coop. Pay some EGGs. Earn some shares.
     function enter(uint256 _amount) public {
         uint256 totalEgg = egg.balanceOf(address(this));
         uint256 totalShares = totalSupply();
@@ -26,7 +26,7 @@ contract ChickenCoop is ERC20("ChickenCoop", "xEGG"){
         egg.transferFrom(msg.sender, address(this), _amount);
     }
 
-    // Leave the bar. Claim back your EGGs.
+    // Leave the coop. Claim back your EGGs.
     function leave(uint256 _share) public {
         uint256 totalShares = totalSupply();
         uint256 what = _share.mul(egg.balanceOf(address(this))).div(totalShares);

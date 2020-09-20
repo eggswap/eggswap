@@ -28,7 +28,7 @@ async function deployToken(deployer) {
   uint256 _startBlock,
   uint256 _bonusEndBlock
   */
-  await deployer.deploy(Chicken, EggToken.address, DEV, 1000, 0, 1000);
+  await deployer.deploy(Chicken, EggToken.address, DEV, 100000000000000000000, 0, 1000);
 
   // launch uniswap
   //await deployer.deploy(UniswapFactory);

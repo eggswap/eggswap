@@ -8,7 +8,6 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./EggToken.sol";
 
-
 interface IMigratorChef {
     // Perform LP token migration from legacy UniswapV2 to EggSwap.
     // Take the current LP token address and return the new LP token address.
@@ -60,6 +59,8 @@ contract Chicken is Ownable {
 
     // The EGG TOKEN!
     EggToken public egg;
+    // BurnToMint
+    address public burnToMintAddress;
     // Dev address.
     address public devaddr;
     // Block number when bonus EGG period ends.
@@ -75,6 +76,7 @@ contract Chicken is Ownable {
     PoolInfo[] public poolInfo;
     // Info of each user that stakes LP tokens.
     mapping (uint256 => mapping (address => UserInfo)) public userInfo;
+
     // Total allocation poitns. Must be the sum of all allocation points in all pools.
     uint256 public totalAllocPoint = 0;
     // The block number when EGG mining starts.
@@ -83,6 +85,7 @@ contract Chicken is Ownable {
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
     event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
     event EmergencyWithdraw(address indexed user, uint256 indexed pid, uint256 amount);
+    event BurnMint(address indexed user, uint256 amount);
 
     constructor(
         EggToken _egg,
@@ -125,6 +128,10 @@ contract Chicken is Ownable {
         }
         totalAllocPoint = totalAllocPoint.sub(poolInfo[_pid].allocPoint).add(_allocPoint);
         poolInfo[_pid].allocPoint = _allocPoint;
+    }
+
+    function setBurnToMint(address _burnToMintAddress) public onlyOwner {
+      burnToMintAddress = _burnToMintAddress;
     }
 
     // Set the migrator contract. Can only be called by the owner.
@@ -253,6 +260,17 @@ contract Chicken is Ownable {
         } else {
             egg.transfer(_to, _amount);
         }
+    }
+
+    // burnToMint
+    // Because lab and expex use erc644 we could just add chicken contract to the erc644 allow list and deal directly
+    // OR we could have the user approve chicken on the lab and expex contracts and mint new eggs after a transfer of tokens has been made.
+    function burnToMint(address _user, uint256 _amount) public {
+      require(msg.sender == burnToMintAddress, "dev: let it burn");
+      //mint new eggs
+      egg.mint(_user, _amount);
+      //emit event
+      emit BurnMint(_user, _amount);
     }
 
     // Update dev address by the previous dev.
