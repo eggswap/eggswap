@@ -4,7 +4,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-interface Chicken {
+interface IChicken {
   function burnToMint(address _user, uint256 _amount) external;
 }
 
@@ -36,7 +36,7 @@ contract BurnToMint is Ownable {
     */
     Burn[] public bTransactions;
 
-    Chicken public chicken;
+    IChicken public chicken;
     address public blackHole;
 
     /**
@@ -59,8 +59,10 @@ contract BurnToMint is Ownable {
 
     event BurnFailed(address indexed from_, address indexed to_, uint256 amount_);
 
+    event TokenAdded(bytes32 symbol, address indexed token, uint256 divisor);
+
     constructor(address _chicken, address _blackHole) public {
-        chicken = Chicken(_chicken);
+        chicken = IChicken(_chicken);
         blackHole = _blackHole;
     }
 
@@ -71,6 +73,8 @@ contract BurnToMint is Ownable {
     function addNewBurnToken(bytes32 symbol_, address address_, uint256 divisor_) public onlyOwner returns (bool) {
         burnList[symbol_].addr = address_;
         burnList[symbol_].divisor = divisor_;
+
+        emit TokenAdded(symbol_, address_, divisor_);
 
         return true;
     }
@@ -114,13 +118,15 @@ contract BurnToMint is Ownable {
         bTransactionIndexesToSender[from_].push(transactionId - 1);
 
 
-        require(amount_ > TOKEN.allowance(from_, address(this)), 'Burn: Not enough allowance');
+        require(amount_ <= TOKEN.allowance(from_, address(this)), 'Burn: Not enough allowance');
         /*
+        if(amount_ > TOKEN.allowance(from_, address(this)))
         {
             emit BurnFailed(from_, to_, amount_);
             revert();
         }
         */
+
 
         TOKEN.transferFrom(from_, to_, amount_);
 
@@ -137,7 +143,7 @@ contract BurnToMint is Ownable {
     /**
     * @dev allow contract to receive funds
     */
-    function fallback() public payable {}
+    //fallback() external public payable {}
 
     /**
     * @dev withdraw funds from this contract
