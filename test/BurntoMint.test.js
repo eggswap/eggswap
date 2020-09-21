@@ -7,6 +7,7 @@ const BurnToMint = artifacts.require("BurntoMint");
 contract('BurnToMint', ([alice, burn, dev, minter]) => {
 
   let t = web3.utils.asciiToHex('TOKEN');
+  let t2 = web3.utils.asciiToHex('TOKEN2');
 
   beforeEach(async () => {
       this.egg = await EggToken.new({ from: alice });
@@ -16,6 +17,7 @@ contract('BurnToMint', ([alice, burn, dev, minter]) => {
       await this.chicken.setBurnToMint(this.burnToMint.address, { from: alice });
       // launch a fake token
       this.token1 = await MockERC20.new('TOKEN1', 'TOKEN', '10000', { from: alice });
+      //this.token2 = await MockERC20.new('TOKEN2', 'TOKEN2', '10000', { from: alice });
       // add token1 to burnlist
       // addNewBurnToken(bytes32 symbol_, address address_, uint256 divisor_)
       await this.burnToMint.addNewBurnToken(t, this.token1.address, '1', {from: alice});
@@ -59,6 +61,19 @@ contract('BurnToMint', ([alice, burn, dev, minter]) => {
       assert.equal((await this.token1.balanceOf(alice)).valueOf(), '9900');
       assert.equal((await this.token1.balanceOf(burn)).valueOf(), '100');
       assert.equal((await this.egg.balanceOf(alice)).valueOf(), '100');
+  });
+
+  it('should mint tokens with diferent divisor', async () => {
+      this.token2 = await MockERC20.new('TOKEN2', 'TOKEN2', '10000', { from: alice });
+      await this.burnToMint.addNewBurnToken(t2, this.token2.address, '10', {from: alice});
+      // burn fake token
+      // check balances
+      await this.token2.approve(this.burnToMint.address, '100', { from: alice });
+      await this.burnToMint.burnTokens(t2, '100', { from: alice });
+
+      assert.equal((await this.token2.balanceOf(alice)).valueOf(), '9900');
+      assert.equal((await this.token2.balanceOf(burn)).valueOf(), '100');
+      assert.equal((await this.egg.balanceOf(alice)).valueOf(), '10');
   });
 
 });
