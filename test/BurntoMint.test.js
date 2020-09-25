@@ -52,7 +52,7 @@ contract('BurnToMint', ([alice, burn, dev, minter]) => {
 
 
 
-  it('should mint eggs after burning tokens', async () => {
+  it('should mint tokens after burning tokens', async () => {
       // burn fake token
       // check balances
       await this.token1.approve(this.burnToMint.address, '100', { from: alice });
