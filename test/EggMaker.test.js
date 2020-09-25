@@ -9,10 +9,13 @@ contract('EggMaker', ([alice, bar, minter]) => {
         this.factory = await UniswapV2Factory.new(alice, { from: alice });
         this.egg = await EggToken.new({ from: alice });
         await this.egg.mint(minter, '100000000', { from: alice });
+        // launch tokens
         this.wexp = await MockERC20.new('WETH', 'WETH', '100000000', { from: minter });
         this.token1 = await MockERC20.new('TOKEN1', 'TOKEN', '100000000', { from: minter });
         this.token2 = await MockERC20.new('TOKEN2', 'TOKEN2', '100000000', { from: minter });
+        // launch egg maker
         this.maker = await EggMaker.new(this.factory.address, bar, this.egg.address, this.wexp.address);
+        // create pools
         this.eggWETH = await UniswapV2Pair.at((await this.factory.createPair(this.wexp.address, this.egg.address)).logs[0].args.pair);
         this.wexpToken1 = await UniswapV2Pair.at((await this.factory.createPair(this.wexp.address, this.token1.address)).logs[0].args.pair);
         this.wexpToken2 = await UniswapV2Pair.at((await this.factory.createPair(this.wexp.address, this.token2.address)).logs[0].args.pair);
@@ -21,22 +24,28 @@ contract('EggMaker', ([alice, bar, minter]) => {
 
     it('should make EGGs successfully', async () => {
         await this.factory.setFeeTo(this.maker.address, { from: alice });
+
         await this.wexp.transfer(this.eggWETH.address, '10000000', { from: minter });
         await this.egg.transfer(this.eggWETH.address, '10000000', { from: minter });
         await this.eggWETH.mint(minter);
+
         await this.wexp.transfer(this.wexpToken1.address, '10000000', { from: minter });
         await this.token1.transfer(this.wexpToken1.address, '10000000', { from: minter });
         await this.wexpToken1.mint(minter);
+
         await this.wexp.transfer(this.wexpToken2.address, '10000000', { from: minter });
         await this.token2.transfer(this.wexpToken2.address, '10000000', { from: minter });
         await this.wexpToken2.mint(minter);
+
         await this.token1.transfer(this.token1Token2.address, '10000000', { from: minter });
         await this.token2.transfer(this.token1Token2.address, '10000000', { from: minter });
         await this.token1Token2.mint(minter);
+
         // Fake some revenue
         await this.token1.transfer(this.token1Token2.address, '100000', { from: minter });
         await this.token2.transfer(this.token1Token2.address, '100000', { from: minter });
         await this.token1Token2.sync();
+
         await this.token1.transfer(this.token1Token2.address, '10000000', { from: minter });
         await this.token2.transfer(this.token1Token2.address, '10000000', { from: minter });
         await this.token1Token2.mint(minter);

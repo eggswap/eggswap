@@ -1,12 +1,15 @@
+//CONSTANTS
+let CONSTANTS = {};
+
+CONSTANTS.INIT_CODE_HASH = '0xc0c875d9c0f62295072f21084a19a575ff5ef887aa5ed8ce83ccfc708901071a';
+
 const { bytecode } = artifacts.require('UniswapV2Pair');
-const { keccak256 } = require('@ethersproject/solidity');
+const { ethers } = require("ethers");
 
-const INIT_CODE_HASH = '0xd3870190fa535265a223fa6b139c61092bc00cb5199ff5771b7dd7ad5d043772';
-
-const COMPUTED_INIT_CODE_HASH = keccak256(['bytes'], [`${bytecode}`])
+const COMPUTED_INIT_CODE_HASH = ethers.utils.keccak256(bytecode);
 
 contract('UniswapV2Pair', ([alice, burn, dev, minter]) => {
   it('INIT_CODE_HASH matches computed bytecode hash', () => {
-      assert.equal(COMPUTED_INIT_CODE_HASH, INIT_CODE_HASH);
-  })
+      assert.equal(COMPUTED_INIT_CODE_HASH, CONSTANTS.INIT_CODE_HASH);
+  });
 });
