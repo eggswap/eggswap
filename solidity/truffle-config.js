@@ -9,17 +9,20 @@ module.exports = {
     live: {
       host: "127.0.0.1",
       port: 9656,
-      network_id: 1
+      network_id: 1,
+      skipDryRun: true
     },
     development: {
       host: "127.0.0.1",
       port: 7545,
-      network_id: "*"
+      network_id: "*",
+      skipDryRun: true
     },
     test: {
       host: "127.0.0.1",
       port: 7545,
-      network_id: "*"
+      network_id: "*",
+      skipDryRun: true
     }
   },
   compilers: {
