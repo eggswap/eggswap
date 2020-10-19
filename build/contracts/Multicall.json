@@ -4161,6 +4161,12 @@
     "version": "0.6.12+commit.27d51765.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {},
+      "links": {},
+      "address": "0xc39BA2C93541b689f047a57d38ed7b5afa8e2bB8",
+      "transactionHash": "0x4ab55e2fe597ebc7f810c139e464ee1ea76a4c3ec564f702bf6e0bb440984004"
+    },
     "5777": {
       "events": {},
       "links": {},
@@ -4169,7 +4175,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-10-03T21:13:08.647Z",
+  "updatedAt": "2020-10-06T00:15:10.785Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Michael Elliot <mike@makerdao.com>Joshua Levine <joshua@makerdao.com>Nick Johnson <arachnid@notdot.net>",

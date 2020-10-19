@@ -828,7 +828,7 @@
                         "lValueRequested": false,
                         "memberName": "totalSupply",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 11379,
+                        "referencedDeclaration": 11672,
                         "src": "2325:15:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -987,7 +987,7 @@
                         "lValueRequested": false,
                         "memberName": "totalSupply",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 11379,
+                        "referencedDeclaration": 11672,
                         "src": "2633:15:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -18209,7 +18209,7 @@
                         "lValueRequested": false,
                         "memberName": "totalSupply",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 11379,
+                        "referencedDeclaration": 11672,
                         "src": "2325:15:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -18368,7 +18368,7 @@
                         "lValueRequested": false,
                         "memberName": "totalSupply",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 11379,
+                        "referencedDeclaration": 11672,
                         "src": "2633:15:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -35442,8 +35442,8 @@
     "version": "0.6.12+commit.27d51765.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.2.5",
-  "updatedAt": "2020-10-03T19:15:32.752Z",
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-10-19T20:11:05.389Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

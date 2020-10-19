@@ -1,8 +1,7 @@
 const Chicken = artifacts.require("Chicken");
 
 const BurnToMint = artifacts.require("BurnToMint");
-
-const BURN = "0x6a620a92Ec2D11a70428b45a795909bd28AedA45"; // ideally this will be to 0x0 or perhaps charity address or something.
+const BURN = "0x0000000000000000000000000000000000000000"; // ideally this will be to 0x0 or perhaps charity address or something.
 
 // ============ Main Migration ============
 
@@ -22,5 +21,5 @@ async function deployToken(deployer) {
   await chicken.setBurnToMint(BurnToMint.address);
 
   // set burn tokens
-
+  let burn = await BurnToMint.deployed();
 };

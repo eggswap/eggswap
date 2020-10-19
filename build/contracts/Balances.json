@@ -9200,6 +9200,63 @@
     "version": "0.6.12+commit.27d51765.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x99affe65171b929cf897471b0e82d82c6cc3406b53fdbc068ea3b174e7713176": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "Module",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "Account",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "Amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "Polarity",
+              "type": "string"
+            }
+          ],
+          "name": "BalanceAdj",
+          "type": "event"
+        },
+        "0x96bf850214e832f3d463d74cdf933b2aa73175e078496bd11f5e8afaeb2bbb9c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "Module",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bool",
+              "name": "Set",
+              "type": "bool"
+            }
+          ],
+          "name": "ModuleSet",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x35400E83B3d76F1575B135556F6311E64f49889c",
+      "transactionHash": "0x1e86b7171f490dbd2875ccec296ed3051e350e7ce0a3e60e0c26e312acfab616"
+    },
     "5777": {
       "events": {
         "0x99affe65171b929cf897471b0e82d82c6cc3406b53fdbc068ea3b174e7713176": {
@@ -9254,12 +9311,12 @@
         }
       },
       "links": {},
-      "address": "0xB76Dd69D93BD394996D1270371473C8d3bA0B359",
-      "transactionHash": "0x9db500fec2afe7e61ed60a4d38c8bcdb73234e0728052152607246e2cb4f24c8"
+      "address": "0x9feCC971dE9a086AB563f3e6A71350d358Dce13c",
+      "transactionHash": "0x1183d26f6195574f6e4c3df32f7597cc29d65b334fd8806e8c0ed3424863a4ac"
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-10-03T21:12:29.444Z",
+  "updatedAt": "2020-10-06T00:11:54.703Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

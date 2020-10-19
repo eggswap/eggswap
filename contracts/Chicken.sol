@@ -68,7 +68,7 @@ contract Chicken is Ownable {
     // EGG tokens created per block.
     uint256 public eggPerBlock;
     // Bonus muliplier for early birds.
-    uint256 public constant BONUS_MULTIPLIER = 10;
+    uint256 public constant BONUS_MULTIPLIER = 2;
     // The migrator contract. It has a lot of power. Can only be set through governance (owner).
     IMigratorChef public migrator;
 
@@ -199,7 +199,7 @@ contract Chicken is Ownable {
         }
         uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
         uint256 eggReward = multiplier.mul(eggPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
-        egg.mint(devaddr, eggReward.div(10));
+        egg.mint(devaddr, eggReward.div(100));
         egg.mint(address(this), eggReward);
         pool.accEggPerShare = pool.accEggPerShare.add(eggReward.mul(1e12).div(lpSupply));
         pool.lastRewardBlock = block.number;

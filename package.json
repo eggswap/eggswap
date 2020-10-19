@@ -8,9 +8,11 @@
     "@openzeppelin/contracts": "^3.1.0",
     "@types/chai": "^4.2.12",
     "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
     "ethers": "^5.0.14",
     "ethers-utils": "^2.1.11",
     "truffle": "^5.1.41",
-    "truffle-flattener": "^1.4.4"
+    "truffle-flattener": "^1.4.4",
+    "truffle-privatekey-provider": "^1.5.0"
   }
 }

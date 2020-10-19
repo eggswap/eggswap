@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+let PrivateKeyProvider = require("truffle-privatekey-provider");
+
 module.exports = {
   // Uncommenting the defaults below
   // provides for an easier quick-start with Ganache.
@@ -6,8 +10,9 @@ module.exports = {
   // for more details on how to specify configuration options!
   //
   networks: {
-    live: {
-      host: "127.0.0.1",
+    expanse: {
+      provider: () => new PrivateKeyProvider(process.env.LIVE_PRIV_KEY, "https://node.expanse.tech/"),
+      host: "https://node.expanse.tech",
       port: 9656,
       network_id: 1,
       skipDryRun: true

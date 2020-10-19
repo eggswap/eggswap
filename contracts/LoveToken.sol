@@ -8,6 +8,6 @@ contract LoveToken is ERC20 {
     constructor(
         uint256 supply
     ) public ERC20('Love', 'LVE') {
-        _mint(msg.sender, supply);
+        _mint(msg.sender, supply * 1 ether);
     }
 }

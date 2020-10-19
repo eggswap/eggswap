@@ -6861,6 +6861,44 @@
     "version": "0.6.12+commit.27d51765.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "token0",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "token1",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "pair",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "PairCreated",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xaf69b94F4A1BBb09aD54DAaFca4629D915BD84E5",
+      "transactionHash": "0xdfc85691b1f4ad36f3c3fc93a38fcf835286810bc7ffad11d2ae6425780ed025"
+    },
     "5777": {
       "events": {
         "0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9": {
@@ -6900,8 +6938,8 @@
       "transactionHash": "0x3ed0b5e358d797c3308646cde86c0f06f78da323fe1d3f84190972713a3c92cb"
     }
   },
-  "schemaVersion": "3.2.5",
-  "updatedAt": "2020-10-03T21:12:29.361Z",
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-10-19T20:28:38.912Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

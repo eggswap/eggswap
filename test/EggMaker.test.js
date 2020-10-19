@@ -59,9 +59,11 @@ contract('EggMaker', ([alice, bar, minter]) => {
         await this.egg.transfer(this.eggWETH.address, '100000', { from: minter });
         await this.wexp.transfer(this.eggWETH.address, '100000', { from: minter });
         await this.eggWETH.sync();
+
         await this.egg.transfer(this.eggWETH.address, '10000000', { from: minter });
         await this.wexp.transfer(this.eggWETH.address, '10000000', { from: minter });
         await this.eggWETH.mint(minter);
+
         assert.equal((await this.eggWETH.balanceOf(this.maker.address)).valueOf(), '16537');
         await this.maker.convert(this.egg.address, this.wexp.address);
         assert.equal((await this.egg.balanceOf(bar)).valueOf(), '66249');
