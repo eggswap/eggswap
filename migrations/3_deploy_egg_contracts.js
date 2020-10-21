@@ -17,7 +17,7 @@ const migration = async (deployer) => {
 module.exports = migration;
 
 async function deployToken(deployer) {
-  //await deployer.deploy(EggToken);
+  await deployer.deploy(EggToken);
 
   await deployer.deploy(Chicken, EggToken.address, DEV, "100000000000000000000", "4010000", "4200000");
 

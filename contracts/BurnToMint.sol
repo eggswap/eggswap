@@ -17,6 +17,7 @@ contract BurnToMint is Ownable {
     * @param amount_ number of burnList to transfer to_ account
     * @param failed_ if transfer was successful or not
     */
+    
     struct Burn {
         address contract_;
         address to_;
